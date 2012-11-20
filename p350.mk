@@ -49,6 +49,12 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/idc/synaptics.idc:system/usr/idc/synaptics.idc \
     $(LOCAL_PATH)/configs/idc/touch_mcs7000.idc:system/usr/idc/touch_mcs7000.idc 
 
+# Kernel Modules
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/prebuilt/wireless.ko:system/lib/modules/wireless.ko \
+    $(LOCAL_PATH)/prebuilt/tun.ko:system/lib/modules/tun.ko \
+    $(LOCAL_PATH)/prebuilt/cifs.ko:system/lib/modules/cips.ko \
+
 # BT startup
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/init.qcom.bt.sh:system/bin/init.qcom.bt.sh
