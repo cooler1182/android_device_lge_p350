@@ -13,7 +13,7 @@ $(call inherit-product, vendor/cm/config/common_mini_phone.mk)
 ## Device identifier. This must come after all inclusions
 PRODUCT_BUILD_PROP_OVERRIDES += \
     BUILD_DISPLAY_ID=IMM76L \
-    BUILD_FINGERPRINT="lge/p350/p50:4.0.4/IMM76L/20120608:user/release-keys" \
+    BUILD_FINGERPRINT="lge/p350/p350:4.0.4/IMM76L/20120608:user/release-keys" \
     PRIVATE_BUILD_DESC="p350-user 4.0.4 IMM76L 20120608 release-keys"
 
 PRODUCT_DEVICE := p350
