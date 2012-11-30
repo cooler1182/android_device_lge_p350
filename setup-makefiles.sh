@@ -76,11 +76,9 @@ PRODUCT_COPY_FILES += \\
     vendor/__VENDOR__/__DEVICE__/proprietary/lib/libqmi.so:system/lib/libqmi.so \\
     vendor/__VENDOR__/__DEVICE__/proprietary/lib/libpbmlib.so:system/lib/libpbmlib.so \\
     vendor/__VENDOR__/__DEVICE__/proprietary/lib/libmmgsdilib.so:system/lib/libmmgsdilib.so \\
-    vendor/__VENDOR__/__DEVICE__/proprietary/lib/liblge_security.so:system/lib/liblge_security.so \\
     vendor/__VENDOR__/__DEVICE__/proprietary/lib/libril-qcril-hook-oem.so:system/lib/libril-qcril-hook-oem.so \\
     vendor/__VENDOR__/__DEVICE__/proprietary/lib/libdsm.so:system/lib/libdsm.so \\
     vendor/__VENDOR__/__DEVICE__/proprietary/lib/liboncrpc.so:system/lib/liboncrpc.so \\
-    vendor/__VENDOR__/__DEVICE__/proprietary/lib/libril-qc-qmi-1.so:system/lib/libril-qc-qmi-1.so \\
     vendor/__VENDOR__/__DEVICE__/proprietary/lib/libnv.so:system/lib/libnv.so \\
     vendor/__VENDOR__/__DEVICE__/proprietary/lib/libauth.so:system/lib/libauth.so \\
     vendor/__VENDOR__/__DEVICE__/proprietary/lib/libwms.so:system/lib/libwms.so \\
@@ -95,18 +93,23 @@ PRODUCT_COPY_FILES += \\
     vendor/__VENDOR__/__DEVICE__/proprietary/lib/libdss.so:system/lib/libdss.so \\
     vendor/__VENDOR__/__DEVICE__/proprietary/lib/libbcmwl.so:system/lib/libbcmwl.so \\
     vendor/__VENDOR__/__DEVICE__/proprietary/lib/libwmsts.so:system/lib/libwmsts.so \\
-    vendor/__VENDOR__/__DEVICE__/proprietary/lib/libdsutils.so:system/lib/libdsutils.so \\
-    vendor/__VENDOR__/__DEVICE__/proprietary/lib/libidl.so:system/lib/libidl.so \\
     vendor/__VENDOR__/__DEVICE__/proprietary/lib/liblgdrm.so:system/lib/liblgdrm.so \\
+    vendor/__VENDOR__/__DEVICE__/proprietary/lib/liblgdrmwbxml.so:system/lib/liblgdrmwbxml.so \\
+    vendor/__VENDOR__/__DEVICE__/proprietary/lib/liblgerft.so:system/lib/liblgerft.so \\
+    vendor/__VENDOR__/__DEVICE__/proprietary/lib/libcommondefs.so:system/lib/libcommondefs.so \\
+    vendor/__VENDOR__/__DEVICE__/proprietary/lib/libdll.so:system/lib/libdll.so \\
+    vendor/__VENDOR__/__DEVICE__/proprietary/lib/libloc.so:system/lib/libloc.so \\
+    vendor/__VENDOR__/__DEVICE__/proprietary/lib/libloc-rpc.so:system/lib/libloc-rpc.so \\
+    vendor/__VENDOR__/__DEVICE__/proprietary/lib/libsnd.so:system/lib/libsnd.so \\
     vendor/__VENDOR__/__DEVICE__/proprietary/bin/qmuxd:system/bin/qmuxd
 
 ## Audio
-
 PRODUCT_COPY_FILES += \\
     vendor/__VENDOR__/__DEVICE__/proprietary/lib/libaudioeq.so:system/lib/libaudioeq.so
 
 ## HAL
 PRODUCT_COPY_FILES += \\
+    vendor/__VENDOR__/__DEVICE__/proprietary/lib/hw/lights.pecan.so:system/lib/hw/lights.pecan.so \\
     vendor/__VENDOR__/__DEVICE__/proprietary/lib/hw/sensors.pecan.so:system/lib/hw/sensors.pecan.so
 
 ## EGL
@@ -133,14 +136,11 @@ PRODUCT_COPY_FILES += \\
     vendor/__VENDOR__/__DEVICE__/proprietary/lib/libOmxAmrwbDec.so:system/lib/libOmxAmrwbDec.so \\
     vendor/__VENDOR__/__DEVICE__/proprietary/lib/libOmxEvrcDec.so:system/lib/libOmxEvrcDec.so \\
     vendor/__VENDOR__/__DEVICE__/proprietary/lib/libOmxEvrcEnc.so:system/lib/libOmxEvrcEnc.so \\
-    vendor/__VENDOR__/__DEVICE__/proprietary/lib/libOmxEvrcHwDec.so:system/lib/libOmxEvrcHwDec.so \\
     vendor/__VENDOR__/__DEVICE__/proprietary/lib/libOmxH264Dec.so:system/lib/libOmxH264Dec.so \\
     vendor/__VENDOR__/__DEVICE__/proprietary/lib/libOmxMp3Dec.so:system/lib/libOmxMp3Dec.so \\
     vendor/__VENDOR__/__DEVICE__/proprietary/lib/libOmxMpeg4Dec.so:system/lib/libOmxMpeg4Dec.so \\
-    vendor/__VENDOR__/__DEVICE__/proprietary/lib/libOmxOn2Dec.so:system/lib/libOmxOn2Dec.so \\
-    vendor/__VENDOR__/__DEVICE__/proprietary/lib/libOmxQcelp13Dec.so:system/lib/libOmxQcelp13Dec.so \\
     vendor/__VENDOR__/__DEVICE__/proprietary/lib/libOmxQcelp13Enc.so:system/lib/libOmxQcelp13Enc.so \\
-    vendor/__VENDOR__/__DEVICE__/proprietary/lib/libOmxQcelpHwDec.so:system/lib/libOmxQcelpHwDec.so \\
+    vendor/__VENDOR__/__DEVICE__/proprietary/lib/libOmxQcelpDec.so:system/lib/libOmxQcelpDec.so \\
     vendor/__VENDOR__/__DEVICE__/proprietary/lib/libOmxVidEnc.so:system/lib/libOmxVidEnc.so \\
     vendor/__VENDOR__/__DEVICE__/proprietary/lib/libOmxWmaDec.so:system/lib/libOmxWmaDec.so \\
     vendor/__VENDOR__/__DEVICE__/proprietary/lib/libOmxWmvDec.so:system/lib/libOmxWmvDec.so \\
@@ -148,11 +148,36 @@ PRODUCT_COPY_FILES += \\
 
 ## Camera
 PRODUCT_COPY_FILES += \\
-    vendor/__VENDOR__/__DEVICE__/proprietary/lib/libcamera.so:system/lib/libcamera.so \\
-    vendor/__VENDOR__/__DEVICE__/proprietary/lib/libcamera.so:obj/lib/libcamera.so \\
     vendor/__VENDOR__/__DEVICE__/proprietary/lib/liboemcamera.so:system/lib/liboemcamera.so \\
     vendor/__VENDOR__/__DEVICE__/proprietary/lib/libmmjpeg.so:system/lib/libmmjpeg.so \\
     vendor/__VENDOR__/__DEVICE__/proprietary/lib/libmmipl.so:system/lib/libmmipl.so
+
+## port-bridge
+PRODUCT_COPY_FILES += \\
+    vendor/__VENDOR__/__DEVICE__/proprietary/bin/port-bridge:system/bin/port-bridge
+
+## rmt_storage
+PRODUCT_COPY_FILES += \\
+    vendor/__VENDOR__/__DEVICE__/proprietary/bin/rmt_storage:system/bin/rmt_storage
+
+## wiperiface
+PRODUCT_COPY_FILES += \\
+    vendor/__VENDOR__/__DEVICE__/proprietary/bin/wiperiface:system/bin/wiperiface
+
+## Keycharacter Map
+PRODUCT_COPY_FILES += \\
+    vendor/__VENDOR__/__DEVICE__/proprietary/usr/keychars/touch_mcs7000.kcm.bin:system/usr/keychars/touch_mcs7000.kcm.bin
+
+## Touchscreen firmware updater
+PRODUCT_COPY_FILES += \\
+    vendor/__VENDOR__/__DEVICE__/proprietary/bin/tsdown:system/bin/tsdown \\
+    vendor/__VENDOR__/__DEVICE__/proprietary/etc/MELFAS_FIRM.bin:system/etc/MELFAS_FIRM.bin
+
+## netmgr
+PRODUCT_COPY_FILES += \\
+    vendor/__VENDOR__/__DEVICE__/proprietary/bin/netmgrd:system/bin/netmgrd \\
+    vendor/__VENDOR__/__DEVICE__/proprietary/lib/libdsutils.so:system/lib/libdsutils.so \\
+    vendor/__VENDOR__/__DEVICE__/proprietary/lib/libnetmgr.so:system/lib/libnetmgr.so
 
 ## BT
 PRODUCT_COPY_FILES += \\
