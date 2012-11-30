@@ -37,8 +37,7 @@
 
 #define LOG_SND_RPC 0  // Set to 1 to log sound RPC's
 
-//#define COMBO_DEVICE_SUPPORTED 0 // Headset speaker combo device not supported on this target
-#undef COMBO_DEVICE_SUPPORTED
+#define COMBO_DEVICE_SUPPORTED 0 // Headset speaker combo device not supported on this target
 #define DUALMIC_KEY "dualmic_enabled"
 #define TTY_MODE_KEY "tty_mode"
 #define DEVICE_OUT_SPEAKER_IN_CALL 0x4000
