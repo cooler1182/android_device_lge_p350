@@ -76,6 +76,15 @@ PRODUCT_COPY_FILES += \
 # Pecan RIL implementation
 FRAMEWORKS_BASE_SUBDIRS += ../../$(LOCAL_PATH)/ril/
 
+	#Hardware OMX Codecs
+PRODUCT_PACKAGES += \
+    libSEC_OMX_Core.p350 \
+    libOMX.SEC.AVC.Decoder.p350 \
+    libOMX.SEC.M4V.Decoder.p350 \
+    libOMX.SEC.AVC.Encoder.p350 \
+    libOMX.SEC.M4V.Encoder.p350
+	
+	
 # Display 
 PRODUCT_PACKAGES += \
    libmemalloc \
