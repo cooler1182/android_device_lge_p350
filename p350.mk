@@ -65,7 +65,7 @@ PRODUCT_COPY_FILES += \
 # SD Card
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/vold.fstab:system/etc/vold.fstab
-
+    $(LOCAL_PATH)/configs/sysctl.conf:system/etc/sysctl.conf
 
 # Audio
 PRODUCT_COPY_FILES += \
