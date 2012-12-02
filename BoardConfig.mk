@@ -24,7 +24,7 @@ TARGET_BOOTANIMATION_PRELOAD := true
 TARGET_SPECIFIC_HEADER_PATH := device/lge/p350/include
 
 # Kernel
-TARGET_KERNEL_SOURCE := kernel/lge/p350
+TARGET_KERNEL_SOURCE := kernel/lge/msm7x27
 TARGET_KERNEL_CONFIG := cyanogenmod_pecan_defconfig
 BOARD_KERNEL_CMDLINE := mem=215M console=ttyMSM2,115200n8 androidboot.hardware=pecan
 BOARD_KERNEL_BASE := 0x02808000
@@ -62,12 +62,15 @@ TARGET_QCOM_HDMI_OUT := false
 BOARD_USE_QCOM_PMEM := true
 
 # CFLAGS
-
+COMMON_GLOBAL_CFLAGS += -DNO_RGBX_8888
 COMMON_GLOBAL_CFLAGS += -DREFRESH_RATE=60
 COMMON_GLOBAL_CFLAGS += -DMISSING_EGL_EXTERNAL_IMAGE
 COMMON_GLOBAL_CFLAGS += -DMISSING_GRALLOC_BUFFERS
+COMMON_GLOBAL_CFLAGS += -DUNABLE_TO_DEQUEUE
 COMMON_GLOBAL_CFLAGS += -DMISSING_EGL_PIXEL_FORMAT_YV12
-COMMON_GLOBAL_CFLAGS += -DQCOM_LEGACY_OMX
+COMMON_GLOBAL_CFLAGS += -DBOARD_GL_OES_EGL_IMG_EXTERNAL_HACK
+#COMMON_GLOBAL_CFLAGS += -DQCOM_LEGACY_OMX
+COMMON_GLOBAL_CFLAGS += -DBINDER_COMPAT
 COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE
 COMMON_GLOBAL_CFLAGS += -DTARGET_MSM7x27
 
@@ -96,7 +99,14 @@ BOARD_VENDOR_QCOM_AMSS_VERSION := 50000
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := p350
 BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50000
 
+<<<<<<< HEAD
+# Qcom
+=======
+# Small system
+BOARD_HAS_SMALL_SYSTEM_PARTITION := true
+
 # Qcom 
+>>>>>>> 130e90d42842a7a795523c2c11db5a79a21dd93e
 BOARD_USES_QCOM_LIBS := true
 BOARD_USES_QCOM_HARDWARE := true
 
@@ -104,9 +114,9 @@ BOARD_USES_QCOM_HARDWARE := true
 TARGET_PROVIDES_LIBRIL := true
 
 # FM
-#BOARD_FM_DEVICE := bcm4329
-#BOARD_HAVE_FM_RADIO := true
-#COMMON_GLOBAL_CFLAGS += -DHAVE_FM_RADIO
+BOARD_FM_DEVICE := bcm4329
+BOARD_HAVE_FM_RADIO := true
+COMMON_GLOBAL_CFLAGS += -DHAVE_FM_RADIO
 
 # USB mass storage
 BOARD_USE_USB_MASS_STORAGE_SWITCH := true
@@ -114,16 +124,16 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun0/f
 BOARD_UMS_LUNFILE := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
 
 # Wi-Fi & Wi-Fi HotSpot
-WPA_SUPPLICANT_VERSION          := VER_0_6_X
-BOARD_WLAN_DEVICE               := bcm4329
-BOARD_WEXT_NO_COMBO_SCAN        := true
-BOARD_WPA_SUPPLICANT_DRIVER     := WEXT
-WIFI_DRIVER_HAS_LGE_SOFTAP      := true
-WIFI_DRIVER_MODULE_PATH         := "/system/lib/modules/wireless.ko"
-WIFI_DRIVER_MODULE_ARG          := "firmware_path=/etc/wl/rtecdc.bin nvram_path=/etc/wl/nvram.txt config_path=/data/misc/wifi/config"
-WIFI_DRIVER_MODULE_NAME         := "wireless"
-WIFI_DRIVER_FW_PATH_STA         := "/system/etc/wl/rtecdc.bin"
-WIFI_DRIVER_FW_PATH_AP          := "/system/etc/wl/rtecdc-apsta.bin"
+WPA_SUPPLICANT_VERSION := VER_0_6_X
+BOARD_WLAN_DEVICE := bcm4329
+BOARD_WEXT_NO_COMBO_SCAN := true
+BOARD_WPA_SUPPLICANT_DRIVER := WEXT
+WIFI_DRIVER_HAS_LGE_SOFTAP := true
+WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/wireless.ko"
+WIFI_DRIVER_MODULE_ARG := "firmware_path=/etc/wl/rtecdc.bin nvram_path=/etc/wl/nvram.txt config_path=/data/misc/wifi/config"
+WIFI_DRIVER_MODULE_NAME := "wireless"
+WIFI_DRIVER_FW_PATH_STA := "/system/etc/wl/rtecdc.bin"
+WIFI_DRIVER_FW_PATH_AP := "/system/etc/wl/rtecdc-apsta.bin"
 
 # Browser & WebKit
 JS_ENGINE := v8

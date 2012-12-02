@@ -16,7 +16,6 @@ ro.telephony.call_ring.delay=3000
 ro.telephony.default_network=0
 ro.telephony.ril.v3=signalstrength,skipbrokendatacall,facilitylock,datacall,icccardstatus,1
 mobiledata.interfaces=rmnet0,rmnet1,rmnet2
-ro.telephony.ril_class=LGPecanRIL
 
 ro.bt.bdaddr_path=/data/misc/bd_addr
 
@@ -36,7 +35,7 @@ view.fading_edge_length=8
 view.touch_slop=15
 view.minimum_fling_velocity=25
 view.scroll_friction=0.008
-persist.sys.use_dithering=1
+persist.sys.use_dithering=2
 persist.sys.purgeable_assets=1
 
 # System

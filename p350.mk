@@ -73,8 +73,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt \
     $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
 
-# Pecan RIL implementation
-FRAMEWORKS_BASE_SUBDIRS += ../../$(LOCAL_PATH)/ril/
 
 	#Hardware OMX Codecs
 PRODUCT_PACKAGES += \
@@ -91,7 +89,7 @@ PRODUCT_PACKAGES += \
    liblgenlock \
    gralloc.msm7x27 \
    copybit.msm7x27 \
-   libstagefrighthw \
+   libstagefrighthw.so \
    libtilerenderer \
    libopencorehw \
    hwcomposer.msm7x27 \
@@ -121,8 +119,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory \
     FM \
-    Gallery \
-    CMFileManager
+    Gallery
 
 # Other
 PRODUCT_PACKAGES += \
@@ -175,3 +172,4 @@ PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 PRODUCT_NAME := p350
 PRODUCT_DEVICE := p350
 PRODUCT_MODEL := LG-P350
+
