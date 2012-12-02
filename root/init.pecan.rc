@@ -144,6 +144,11 @@ on boot
   setprop ro.ril.fd.scron.timeout 4
   setprop ro.ril.fd.scroff.timeout 3
 
+
+# I/O scheduler
+    chown system system /sys/block/mmcblk0/queue/scheduler
+    chmod 0664 /sys/block/mmcblk0/queue/scheduler
+
 # Wakelock debug
   write /sys/module/wakelock/parameters/debug_mask 7
 
