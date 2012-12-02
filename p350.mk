@@ -83,6 +83,9 @@ PRODUCT_PACKAGES += \
     libOMX.SEC.M4V.Encoder.p350
 	
 	
+# Pecan RIL implementation
+FRAMEWORKS_BASE_SUBDIRS += ../../$(LOCAL_PATH)/ril/
+
 # Display 
 PRODUCT_PACKAGES += \
    libmemalloc \
