@@ -121,7 +121,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory \
     FM \
-    Gallery
+    Gallery \
+    CMFileManager
 
 # Other
 PRODUCT_PACKAGES += \
