@@ -64,7 +64,7 @@ PRODUCT_COPY_FILES += \
 
 # SD Card
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/vold.fstab:system/etc/vold.fstab
+    $(LOCAL_PATH)/configs/vold.fstab:system/etc/vold.fstab \
     $(LOCAL_PATH)/configs/sysctl.conf:system/etc/sysctl.conf
 
 # Audio
@@ -74,7 +74,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
 
 
-	#Hardware OMX Codecs
+#Hardware OMX Codecs
 PRODUCT_PACKAGES += \
     libSEC_OMX_Core.p350 \
     libOMX.SEC.AVC.Decoder.p350 \
