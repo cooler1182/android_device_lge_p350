@@ -102,8 +102,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     audio_policy.p350 \
     audio.primary.p350 \
-    audio.a2dp.default \
-    libaudioutils
+    audio.a2dp.default
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
