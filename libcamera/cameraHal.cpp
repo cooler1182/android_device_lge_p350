@@ -1,4 +1,4 @@
-/*
+/*	  	
  * Copyright (C) 2012, Raviprasad V Mummidi.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -422,18 +422,19 @@ CameraHAL_FixupParams(android::CameraParameters &settings)
 // FIXME TODO
 
    const char *preview_sizes =
-      "2952x1944,2560x1920,2048x1536,1920x1080,1600x1200,1208x768,1280x720,800x480,768x432,720x480,640x480,576x432,480x320,384x288,352x288,320x240,240x160,176x144";
+      "1280x720,800x480,768x432,720x480,640x480,576x432,480x320,384x288,352x288,320x240,240x160,176x144";
    const char *video_sizes =
       "1280x720,800x480,720x480,640x480,352x288,320x240,176x144";
-   const char *preferred_size       = "480x320";
+   const char *preferred_size       = "320x240";
    const char *preview_frame_rates  = "30,27,24,15";
    const char *preferred_frame_rate = "15";
    const char *frame_rate_range     = "(15,30)";
 
+
    settings.set(android::CameraParameters::KEY_VIDEO_FRAME_FORMAT,
                 android::CameraParameters::PIXEL_FORMAT_YUV420SP);
 
-#if 0
+
    if (!settings.get(android::CameraParameters::KEY_SUPPORTED_PREVIEW_SIZES)) {
       settings.set(android::CameraParameters::KEY_SUPPORTED_PREVIEW_SIZES,
                    preview_sizes);
@@ -468,7 +469,7 @@ CameraHAL_FixupParams(android::CameraParameters &settings)
       settings.set(android::CameraParameters::KEY_SUPPORTED_PREVIEW_FPS_RANGE,
                    frame_rate_range);
    }
-#endif
+
 }
 
 /* Hardware Camera interface handlers. */
