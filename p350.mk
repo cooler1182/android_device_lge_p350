@@ -95,7 +95,7 @@ PRODUCT_PACKAGES += \
    libstagefrighthw.so \
    libtilerenderer \
    libopencorehw \
-   hwcomposer.msm7x27 \
+   hwcomposer.default \
    libQcomUI \
 
 # Audio
