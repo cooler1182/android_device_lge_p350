@@ -278,11 +278,11 @@ CameraHAL_HandlePreviewData(const android::sp<android::IMemory>& dataPtr,
             if (retVal == NO_ERROR) {
                private_handle_t const *privHandle =
                   reinterpret_cast<private_handle_t const *>(*bufHandle);
-               if (!CameraHAL_CopyBuffers_Hw(mHeap->getHeapID(), privHandle->fd,
+               CameraHAL_CopyBuffers_Hw(mHeap->getHeapID(), privHandle->fd,
                                              offset, privHandle->offset,
                                              previewFormat, previewFormat,
                                              0, 0, previewWidth,
-                                             previewHeight));
+                                             previewHeight);
 
                mWindow->enqueue_buffer(mWindow, bufHandle);
                LOGV("CameraHAL_HandlePreviewData: enqueued buffer\n");
