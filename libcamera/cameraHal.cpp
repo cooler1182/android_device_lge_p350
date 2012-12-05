@@ -282,7 +282,7 @@ CameraHAL_HandlePreviewData(const android::sp<android::IMemory>& dataPtr,
                                              offset, privHandle->offset,
                                              previewFormat, previewFormat,
                                              0, 0, previewWidth,
-                                             previewHeight);
+                                             previewHeight));
 
                mWindow->enqueue_buffer(mWindow, bufHandle);
                LOGV("CameraHAL_HandlePreviewData: enqueued buffer\n");
