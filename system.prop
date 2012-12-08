@@ -23,7 +23,9 @@ ro.telephony.ril_class=LGPecanRIL
 ro.bt.bdaddr_path=/data/misc/bd_addr
 
 # see also: init.qcom.usb.rc and init.qcom.post_boot.sh
-persist.sys.usb.config=mass_storage,adb
+persist.sys.usb.config=adb,mass_storage
+persist.service.adb.enable=1
+ro.vold.umsdirtyratio=20
 
 # Store dalvik-cache on /data
 dalvik.vm.dexopt-data-only=1
@@ -53,3 +55,5 @@ debug.camcorder.disablemeta=1
 ro.config.disable_hw_accel=true
 dalvik.vm.lockprof.threshold=500
 dalvik.vm.dexopt-flags=m=y
+
+

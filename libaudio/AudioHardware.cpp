@@ -56,7 +56,7 @@ namespace android_audio_legacy {
 static int audpre_index, tx_iir_index;
 static void * acoustic;
 const uint32_t AudioHardware::inputSamplingRates[] = {
-        8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000
+        8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 96000
 };
 
 static int get_audpp_filter(void);
@@ -622,7 +622,7 @@ int check_and_set_audpp_parameters(char *buf, int size)
             if (!(p = strtok(NULL, seps)))
                 goto token_err;
 
-            eq_cal(eq[i].gain, eq[i].freq, 48000, eq[i].type, eq[i].qf, (int32_t*)numerator, (int32_t *)denominator, shift);
+            eq_cal(eq[i].gain, eq[i].freq, 96000, eq[i].type, eq[i].qf, (int32_t*)numerator, (int32_t *)denominator, shift);
             for (j = 0; j < 6; j++) {
                 eqalizer[device_id].params[ ( i * 6) + j] = numerator[j];
             }
@@ -1074,6 +1074,8 @@ static int msm72xx_enable_postproc(bool state)
 static unsigned calculate_audpre_table_index(unsigned index)
 {
     switch (index) {
+	case 96000:    return SAMP_RATE_INDX_96000;
+	case 64000:    return SAMP_RATE_INDX_64000;
         case 48000:    return SAMP_RATE_INDX_48000;
         case 44100:    return SAMP_RATE_INDX_44100;
         case 32000:    return SAMP_RATE_INDX_32000;
@@ -1082,8 +1084,8 @@ static unsigned calculate_audpre_table_index(unsigned index)
         case 16000:    return SAMP_RATE_INDX_16000;
         case 12000:    return SAMP_RATE_INDX_12000;
         case 11025:    return SAMP_RATE_INDX_11025;
-        case 8000:    return SAMP_RATE_INDX_8000;
-        default:     return -1;
+        case 8000:     return SAMP_RATE_INDX_8000;
+        default:       return -1;
     }
 }
 size_t AudioHardware::getInputBufferSize(uint32_t sampleRate, int format, int channelCount)
@@ -1483,7 +1485,7 @@ SND_DEVICE_HEADSET_STEREO = stereo audio + muted mic
                 new_snd_device = SND_DEVICE_SPEAKER;
                 new_post_proc_feature_mask = (ADRC_ENABLE | EQ_ENABLE | RX_IIR_ENABLE | MBADRC_ENABLE);
             }
-        } else if (outputDevices & AUDIO_DEVICE_OUT_SPEAKER_IN_CALL) { // P500 SPEAKER_IN_CALL fix
+        } else if (outputDevices & AUDIO_DEVICE_OUT_SPEAKER_IN_CALL) { // P350 SPEAKER_IN_CALL fix
             LOGI("Routing audio to Speaker in call\n");
             new_snd_device = SND_DEVICE_SPEAKER_IN_CALL;
             new_post_proc_feature_mask = (ADRC_ENABLE | EQ_ENABLE | RX_IIR_ENABLE | MBADRC_ENABLE);

@@ -249,6 +249,11 @@ CameraHAL_HandlePreviewData(const android::sp<android::IMemory>& dataPtr,
       ssize_t  offset;
       size_t   size;
       int32_t  previewFormat = MDP_Y_CBCR_H2V2;
+#ifdef HWA
+      int32_t  destFormat    = MDP_RGBX_8888;
+#else
+      int32_t  destFormat    = MDP_RGBA_8888;
+#endif
 
       android::status_t retVal;
       android::sp<android::IMemoryHeap> mHeap = dataPtr->getMemory(&offset,
@@ -265,7 +270,11 @@ CameraHAL_HandlePreviewData(const android::sp<android::IMemory>& dataPtr,
                          GRALLOC_USAGE_SW_READ_OFTEN);
       retVal = mWindow->set_buffers_geometry(mWindow,
                                              previewWidth, previewHeight,
-                                             HAL_PIXEL_FORMAT_YCrCb_420_SP
+#ifdef HWA
+                                             HAL_PIXEL_FORMAT_RGBX_8888
+#else
+                                             HAL_PIXEL_FORMAT_RGBA_8888
+#endif
                                              );
       if (retVal == NO_ERROR) {
          int32_t          stride;
@@ -278,11 +287,31 @@ CameraHAL_HandlePreviewData(const android::sp<android::IMemory>& dataPtr,
             if (retVal == NO_ERROR) {
                private_handle_t const *privHandle =
                   reinterpret_cast<private_handle_t const *>(*bufHandle);
-               CameraHAL_CopyBuffers_Hw(mHeap->getHeapID(), privHandle->fd,
+               if (!CameraHAL_CopyBuffers_Hw(mHeap->getHeapID(), privHandle->fd,
                                              offset, privHandle->offset,
-                                             previewFormat, previewFormat,
+                                             previewFormat, destFormat,
                                              0, 0, previewWidth,
-                                             previewHeight);
+                                             previewHeight)) {
+                  void *bits;
+                  android::Rect bounds;
+                  android::GraphicBufferMapper &mapper =
+                     android::GraphicBufferMapper::get();
+
+                  bounds.left   = 0;
+                  bounds.top    = 0;
+                  bounds.right  = previewWidth;
+                  bounds.bottom = previewHeight;
+
+                  mapper.lock(*bufHandle, GRALLOC_USAGE_SW_READ_OFTEN, bounds,
+                              &bits);
+                  LOGV("CameraHAL_HPD: w:%d h:%d bits:%p",
+                       previewWidth, previewHeight, bits);
+                  CameraHal_Decode_Sw((unsigned int *)bits, (char *)mHeap->base() + offset,
+                                      previewWidth, previewHeight);
+
+                  // unlock buffer before sending to display
+                  mapper.unlock(*bufHandle);
+               }
 
                mWindow->enqueue_buffer(mWindow, bufHandle);
                LOGV("CameraHAL_HandlePreviewData: enqueued buffer\n");
@@ -423,7 +452,7 @@ CameraHAL_FixupParams(android::CameraParameters &settings)
       "640x480,576x432,480x320,384x288,352x288,320x240,240x160,176x144";
    const char *video_sizes =
       "640x480,352x288,320x240,176x144";
-   const char *preferred_size       = "480x320";
+   const char *preferred_size       = "320x240";
    const char *preview_frame_rates  = "10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25";
    const char *preferred_frame_rate = "15";
    const char *frame_rate_range     = "(10,25)";
@@ -445,10 +474,10 @@ CameraHAL_FixupParams(android::CameraParameters &settings)
    }
 #endif
    if (!settings.get(android::CameraParameters::KEY_VIDEO_SIZE)) {
-      settings.set("record-size", preferred_size);
+	settings.set("record-size", preferred_size);
       settings.set(android::CameraParameters::KEY_VIDEO_SIZE, preferred_size);
    } else {
-      settings.set("record-size", settings.get(android::CameraParameters::KEY_VIDEO_SIZE));
+	settings.set("record-size", settings.get(android::CameraParameters::KEY_VIDEO_SIZE));
    }
 
    if (!settings.get(android::CameraParameters::KEY_PREFERRED_PREVIEW_SIZE_FOR_VIDEO)) {
@@ -471,15 +500,14 @@ CameraHAL_FixupParams(android::CameraParameters &settings)
       settings.set(android::CameraParameters::KEY_SUPPORTED_PREVIEW_FPS_RANGE,
                    frame_rate_range);
    }
-
    if (!settings.get(android::CameraParameters::KEY_HORIZONTAL_VIEW_ANGLE)) {
-      settings.set(android::CameraParameters::KEY_HORIZONTAL_VIEW_ANGLE,
-                   preferred_horizontal_viewing_angle);
+	settings.set(android::CameraParameters::KEY_HORIZONTAL_VIEW_ANGLE,
+		preferred_horizontal_viewing_angle);
    }
 
    if (!settings.get(android::CameraParameters::KEY_VERTICAL_VIEW_ANGLE)) {
-      settings.set(android::CameraParameters::KEY_VERTICAL_VIEW_ANGLE,
-                   preferred_vertical_viewing_angle);
+	settings.set(android::CameraParameters::KEY_VERTICAL_VIEW_ANGLE,
+		preferred_vertical_viewing_angle);
    }
 }
 
@@ -753,7 +781,7 @@ camera_device_close(hw_device_t* device)
 }
 
 void sighandle(int s){
-   //abort();
+	//abort()
 }
 
 int
@@ -832,4 +860,5 @@ qcamera_device_open(const hw_module_t* module, const char* name,
    *device = &camera_device->common;
    return NO_ERROR;
 }
+
 
