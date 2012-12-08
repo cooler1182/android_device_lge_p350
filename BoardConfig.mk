@@ -80,12 +80,6 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 # Small system
 BOARD_HAS_SMALL_SYSTEM_PARTITION := true
 
-## Wi-Fi Hotspot <--Maybe It can Fix it?-->
-BOARD_HAVE_LEGACY_HOSTAPD := true
-BOARD_HOSTAPD_NO_ENTROPY := true
-
-
-
 # CFLAGS
 #COMMON_GLOBAL_CFLAGS += -DNO_RGBX_8888
 #COMMON_GLOBAL_CFLAGS += -DMISSING_EGL_EXTERNAL_IMAGE
@@ -131,8 +125,6 @@ TARGET_DISABLE_ARM_PIE := true
 # RIL
 TARGET_PROVIDES_LIBRIL := true
 
-
-
 # USB mass storage
 BOARD_USE_USB_MASS_STORAGE_SWITCH := true
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun0/file
@@ -149,8 +141,6 @@ WIFI_DRIVER_MODULE_ARG := "firmware_path=/etc/wl/rtecdc.bin nvram_path=/etc/wl/n
 WIFI_DRIVER_MODULE_NAME := "wireless"
 WIFI_DRIVER_FW_PATH_STA := "/system/etc/wl/rtecdc.bin"
 WIFI_DRIVER_FW_PATH_AP := "/system/etc/wl/rtecdc-apsta.bin"
-
-
 
 # Touch screen compatibility for ICS
 BOARD_USE_LEGACY_TOUCHSCREEN := true
