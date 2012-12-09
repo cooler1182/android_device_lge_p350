@@ -16,7 +16,7 @@ PRODUCT_AAPT_CONFIG := normal mdpi ldpi
 PRODUCT_AAPT_PREF_CONFIG := ldpi
 
 PRODUCT_LOCALES := \
-	en_GB \
+	ldpi
 
 # Permission files
 PRODUCT_COPY_FILES += \
@@ -75,12 +75,12 @@ PRODUCT_COPY_FILES += \
 
 
 #Hardware OMX Codecs
-PRODUCT_PACKAGES += \
-    libSEC_OMX_Core.p350 \
-    libOMX.SEC.AVC.Decoder.p350 \
-    libOMX.SEC.M4V.Decoder.p350 \
-    libOMX.SEC.AVC.Encoder.p350 \
-    libOMX.SEC.M4V.Encoder.p350
+#PRODUCT_PACKAGES += \
+#    libSEC_OMX_Core.p350 \
+#    libOMX.SEC.AVC.Decoder.p350 \
+#    libOMX.SEC.M4V.Decoder.p350 \
+#    libOMX.SEC.AVC.Encoder.p350 \
+#    libOMX.SEC.M4V.Encoder.p350
 	
 	
 # Pecan RIL implementation
@@ -92,10 +92,9 @@ PRODUCT_PACKAGES += \
    liblgenlock \
    gralloc.msm7x27 \
    copybit.msm7x27 \
-   libstagefrighthw.so \
+   libstagefrighthw \
    libtilerenderer \
-   libopencorehw \
-   hwcomposer.default \
+   hwcomposer.msm7x27 \
    libQcomUI \
 
 # Audio
