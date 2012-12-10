@@ -16,7 +16,7 @@ PRODUCT_AAPT_CONFIG := normal mdpi ldpi
 PRODUCT_AAPT_PREF_CONFIG := ldpi
 
 PRODUCT_LOCALES := \
-	ldpi
+	en_GB \
 
 # Permission files
 PRODUCT_COPY_FILES += \
