@@ -6,7 +6,6 @@ on early-init
   mkdir /data 0771 system system
   mkdir /cache 0771 system cache
   mkdir /mnt/sdcard 0000 system system
-  mkdir /storage 0775 system sdcard_r
   mkdir /sd-ext 0771 system system
 
 
@@ -91,8 +90,6 @@ on early-boot
   setrlimit 8 67108864 67108864
 
 on boot
-
-    mount debugfs /sys/kernel/debug /sys/kernel/debug
 
 # Temporary hack to prevent framebuffer flicker
     chmod 0777 /sys/class/graphics/fb0/state
