@@ -25,6 +25,9 @@ TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH_VARIANT := armv6-vfp
 ARCH_ARM_HAVE_VFP := true
 
+# Odex property 
+WITH_DEXPREOPT := true
+
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/lge/p350
 TARGET_KERNEL_CONFIG := cyanogenmod_pecan_defconfig
