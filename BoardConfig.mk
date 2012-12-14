@@ -4,7 +4,6 @@
 # Camera
 USE_CAMERA_STUB := false
 #BOARD_CAMERA_USE_GETBUFFERINFO := true
-BOARD_USE_FROYO_LIBCAMERA := true
 #BOARD_USE_CAF_LIBCAMERA := true
 # This is needed by libcamera.so
 BOARD_USE_NASTY_PTHREAD_CREATE_HACK := true
