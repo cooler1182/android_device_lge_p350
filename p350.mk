@@ -69,16 +69,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt \
     $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
 
-
-#Hardware OMX Codecs
-#PRODUCT_PACKAGES += \
-#    libSEC_OMX_Core.p350 \
-#    libOMX.SEC.AVC.Decoder.p350 \
-#    libOMX.SEC.M4V.Decoder.p350 \
-#    libOMX.SEC.AVC.Encoder.p350 \
-#    libOMX.SEC.M4V.Encoder.p350
-	
-	
 # Pecan RIL implementation
 FRAMEWORKS_BASE_SUBDIRS += ../../$(LOCAL_PATH)/ril/
 
