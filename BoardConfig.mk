@@ -98,6 +98,9 @@ BOARD_HAS_JANKY_BACKBUFFER := true
 BOARD_NO_RGBX_8888 := true
 BOARD_USE_CUSTOM_RECOVERY_FONT := '"font_7x16.h"'
 
+## Wi-Fi Hotspot
+BOARD_HAVE_LEGACY_HOSTAPD := true
+BOARD_HOSTAPD_NO_ENTROPY := true
 
 # Audio and Bluetooth
 TARGET_PROVIDES_LIBAUDIO := true
@@ -142,6 +145,7 @@ WIFI_DRIVER_MODULE_ARG := "firmware_path=/etc/wl/rtecdc.bin nvram_path=/etc/wl/n
 WIFI_DRIVER_MODULE_NAME := "wireless"
 WIFI_DRIVER_FW_PATH_STA := "/system/etc/wl/rtecdc.bin"
 WIFI_DRIVER_FW_PATH_AP := "/system/etc/wl/rtecdc-apsta.bin"
+BOARD_HAVE_LGE_WIFI := true
 
 # Touch screen compatibility for ICS
 BOARD_USE_LEGACY_TOUCHSCREEN := true
