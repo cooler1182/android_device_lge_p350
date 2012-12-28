@@ -43,11 +43,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/7k_handset.kl:system/usr/keylayout/7k_handset.kl \
     $(LOCAL_PATH)/configs/qwerty.kl:system/usr/keylayout/qwerty.kl \
     $(LOCAL_PATH)/configs/touch_mcs7000.kl:system/usr/keylayout/touch_mcs7000.kl \
-    $(LOCAL_PATH)/configs/keychars/touch_mcs7000.kcm.bin:system/usr/keychars/touch_mcs7000.kcm.bin \
-    $(LOCAL_PATH)/configs/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
-    $(LOCAL_PATH)/configs/idc/synaptics-rmi-touchscreen.idc:system/usr/idc/synaptics-rmi-touchscreen.idc \
-    $(LOCAL_PATH)/configs/idc/synaptics.idc:system/usr/idc/synaptics.idc \
-    $(LOCAL_PATH)/configs/idc/touch_mcs7000.idc:system/usr/idc/touch_mcs7000.idc 
+    $(LOCAL_PATH)/configs/AVRCP.kl:system/usr/keylayout/AVRCP.kl
 
 # Kernel Modules
 PRODUCT_COPY_FILES += \
@@ -70,14 +66,17 @@ PRODUCT_COPY_FILES += \
 
 # SD Card
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/vold.fstab:system/etc/vold.fstab
-
+    $(LOCAL_PATH)/configs/vold.fstab:system/etc/vold.fstab \
+    $(LOCAL_PATH)/configs/sysctl.conf:system/etc/sysctl.conf
 
 # Audio
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/AudioFilter.csv:system/etc/AudioFilter.csv \
     $(LOCAL_PATH)/configs/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt \
     $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
+
+# Pecan RIL implementation
+FRAMEWORKS_BASE_SUBDIRS += ../../$(LOCAL_PATH)/ril/
 
 # Display 
 PRODUCT_PACKAGES += \
@@ -87,7 +86,6 @@ PRODUCT_PACKAGES += \
    copybit.msm7x27 \
    libstagefrighthw \
    libtilerenderer \
-   libopencorehw \
    hwcomposer.msm7x27 \
    libQcomUI \
 
@@ -95,7 +93,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     audio_policy.p350 \
     audio.primary.p350 \
-    audio.a2dp.default
+    audio.a2dp.default \
+    libaudioutils
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
@@ -115,7 +114,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory \
     FM \
-    Gallery
+    Gallery \
+    CMFileManager 
 
 # Other
 PRODUCT_PACKAGES += \
@@ -130,6 +130,14 @@ PRODUCT_PACKAGES += \
     hciconfig \
     hwaddrs
 
+# Battery life hacks
+PRODUCT_PROPERTY_OVERRIDES += \
+    # Turn off RIL when not needed
+    ro.ril.disable.power.collapse=1
+    # Better sleep system
+    pm.sleep_mode=1
+    # Scan for WiFi less often to increase batery life
+    wifi.supplicant_scan_interval=180
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.product.camera=msm7x27 \
@@ -168,3 +176,4 @@ PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 PRODUCT_NAME := p350
 PRODUCT_DEVICE := p350
 PRODUCT_MODEL := LG-P350
+

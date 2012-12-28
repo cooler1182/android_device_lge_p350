@@ -13,8 +13,8 @@ $(call inherit-product, vendor/cm/config/common_mini_phone.mk)
 ## Device identifier. This must come after all inclusions
 PRODUCT_BUILD_PROP_OVERRIDES += \
     BUILD_DISPLAY_ID=IMM76L \
-    BUILD_FINGERPRINT="lge/pecan/pecan:4.0.4/IMM76D/299849:user/release-keys" \
-    PRIVATE_BUILD_DESC="pecan-user 4.0.4 IMM76D 299849 release-keys"
+    BUILD_FINGERPRINT="lge/p350/p350:4.0.4/IMM76L/20120608:user/release-keys" \
+    PRIVATE_BUILD_DESC="p350-user 4.0.4 IMM76L 20120608 release-keys"
 
 PRODUCT_DEVICE := p350
 PRODUCT_NAME := cm_p350
@@ -26,7 +26,6 @@ PRODUCT_CHARACTERISTICS := phone
 # Release name and versioning
 PRODUCT_RELEASE_NAME := OptimusMe
 PRODUCT_VERSION_DEVICE_SPECIFIC :=
--include vendor/cm/products/common_versions.mk
 
 # For userdebug builds
 ADDITIONAL_DEFAULT_PROPERTIES += \

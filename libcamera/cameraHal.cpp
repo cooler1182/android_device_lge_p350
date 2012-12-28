@@ -1,4 +1,4 @@
-/*	  	
+/*
  * Copyright (C) 2012, Raviprasad V Mummidi.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -449,13 +449,13 @@ CameraHAL_FixupParams(android::CameraParameters &settings)
 // FIXME TODO
 
    const char *preview_sizes =
-      "1280x720,800x480,768x432,720x480,640x480,576x432,480x320,384x288,352x288,320x240,240x160,176x144";
+      "640x480,576x432,480x320,384x288,352x288,320x240,240x160,176x144";
    const char *video_sizes =
-      "1280x720,800x480,720x480,640x480,352x288,320x240,176x144";
-   const char *preferred_size       = "480x320";
-   const char *preview_frame_rates  = "30,27,24,15";
+      "640x480,352x288,320x240,176x144";
+   const char *preferred_size       = "320x240";
+   const char *preview_frame_rates  = "10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25";
    const char *preferred_frame_rate = "15";
-   const char *frame_rate_range     = "(15,30)";
+   const char *frame_rate_range     = "(10,25)";
    const char *preferred_horizontal_viewing_angle = "51.2";
    const char *preferred_vertical_viewing_angle = "39.4";
 
@@ -467,14 +467,17 @@ CameraHAL_FixupParams(android::CameraParameters &settings)
       settings.set(android::CameraParameters::KEY_SUPPORTED_PREVIEW_SIZES,
                    preview_sizes);
    }
-
+#if 0
    if (!settings.get(android::CameraParameters::KEY_SUPPORTED_VIDEO_SIZES)) {
       settings.set(android::CameraParameters::KEY_SUPPORTED_VIDEO_SIZES,
                    video_sizes);
    }
-
+#endif
    if (!settings.get(android::CameraParameters::KEY_VIDEO_SIZE)) {
+	settings.set("record-size", preferred_size);
       settings.set(android::CameraParameters::KEY_VIDEO_SIZE, preferred_size);
+   } else {
+	settings.set("record-size", settings.get(android::CameraParameters::KEY_VIDEO_SIZE));
    }
 
    if (!settings.get(android::CameraParameters::KEY_PREFERRED_PREVIEW_SIZE_FOR_VIDEO)) {
@@ -498,14 +501,13 @@ CameraHAL_FixupParams(android::CameraParameters &settings)
                    frame_rate_range);
    }
    if (!settings.get(android::CameraParameters::KEY_HORIZONTAL_VIEW_ANGLE)) {
-      LOGE("Setting KEY_HORIZONTAL_VIEW_ANGLE: %s\n", preferred_horizontal_viewing_angle);
-      settings.set(android::CameraParameters::KEY_HORIZONTAL_VIEW_ANGLE,
-                   preferred_horizontal_viewing_angle);
+	settings.set(android::CameraParameters::KEY_HORIZONTAL_VIEW_ANGLE,
+		preferred_horizontal_viewing_angle);
    }
+
    if (!settings.get(android::CameraParameters::KEY_VERTICAL_VIEW_ANGLE)) {
-      LOGE("Setting KEY_VERTICAL_VIEW_ANGLE: %s\n", preferred_vertical_viewing_angle);
-      settings.set(android::CameraParameters::KEY_VERTICAL_VIEW_ANGLE,
-                   preferred_vertical_viewing_angle);
+	settings.set(android::CameraParameters::KEY_VERTICAL_VIEW_ANGLE,
+		preferred_vertical_viewing_angle);
    }
 }
 
@@ -778,6 +780,9 @@ camera_device_close(hw_device_t* device)
    return rc;
 }
 
+void sighandle(int s){
+	//abort()
+}
 
 int
 qcamera_device_open(const hw_module_t* module, const char* name, 
@@ -786,6 +791,7 @@ qcamera_device_open(const hw_module_t* module, const char* name,
 
    void *libcameraHandle;
    int cameraId = atoi(name);
+   signal(SIGFPE,(*sighandle));
 
    LOGD("qcamera_device_open: name:%s device:%p cameraId:%d\n", 
         name, device, cameraId);
@@ -854,4 +860,5 @@ qcamera_device_open(const hw_module_t* module, const char* name,
    *device = &camera_device->common;
    return NO_ERROR;
 }
+
 

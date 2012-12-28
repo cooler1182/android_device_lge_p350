@@ -144,6 +144,11 @@ on boot
   setprop ro.ril.fd.scron.timeout 4
   setprop ro.ril.fd.scroff.timeout 3
 
+
+# I/O scheduler
+    chown system system /sys/block/mmcblk0/queue/scheduler
+    chmod 0664 /sys/block/mmcblk0/queue/scheduler
+
 # Wakelock debug
   write /sys/module/wakelock/parameters/debug_mask 7
 
@@ -273,6 +278,9 @@ on property:service.brcm.bt.mac=*
     exec /system/bin/hwaddrs
 
 on property:gsm.current.phone-type=1
+    start setapversion
+
+on property:gsm.version.baseband=V07u-000-000-MAR-23-2009
     start setapversion
 
 # Triggered by the KEY_VOLUME_DOWN+KEY_MENU keycodes

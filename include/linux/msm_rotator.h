@@ -47,6 +47,7 @@ enum rotator_clk_type {
 	ROTATOR_IMEM_CLK
 };
 
+
 struct msm_rotator_img_info {
 	unsigned int session_id;
 	struct msmfb_img  src;
@@ -74,7 +75,7 @@ struct msm_rotator_platform_data {
 	unsigned int number_of_clocks;
 	unsigned int hardware_version_number;
 	struct msm_rot_clocks *rotator_clks;
-	const char *regulator_name;
 };
+
 #endif
 

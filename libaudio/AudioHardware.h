@@ -38,7 +38,7 @@ namespace android_audio_legacy {
 using android::SortedVector;
 using android::Mutex;
 
-// p350 SPEAKER_IN_CALL fix
+// P500 SPEAKER_IN_CALL fix
 #define AUDIO_DEVICE_OUT_SPEAKER_IN_CALL 0x4000
 
 
@@ -55,7 +55,8 @@ using android::Mutex;
 #define SAMP_RATE_INDX_32000	6
 #define SAMP_RATE_INDX_44100	7
 #define SAMP_RATE_INDX_48000	8
-#define SAMP_RATE_INDX_64000    9
+#define SAMP_RATE_INDX_64000	9
+#define SAMP_RATE_INDX_96000    10
 
 #define EQ_MAX_BAND_NUM 12
 
